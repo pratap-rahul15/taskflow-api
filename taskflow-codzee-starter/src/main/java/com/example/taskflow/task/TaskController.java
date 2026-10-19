@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/api/tasks")
@@ -26,9 +27,10 @@ public class TaskController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Task create(@RequestBody CreateTaskRequest request) {
+    public Task create(@Valid @RequestBody CreateTaskRequest request) {
         return taskService.create(request);
     }
+
 
     @PatchMapping("/{id}/complete")
     public Task complete(@PathVariable long id) {
