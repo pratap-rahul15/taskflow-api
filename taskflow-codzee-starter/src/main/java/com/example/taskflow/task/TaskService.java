@@ -1,17 +1,18 @@
+
 package com.example.taskflow.task;
 
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class TaskService {
-    private final Map<Long, Task> tasks = new LinkedHashMap<>();
+    private final ConcurrentMap<Long, Task> tasks = new ConcurrentHashMap<>();
     private final AtomicLong nextId = new AtomicLong(1);
 
     public List<Task> findAll() {
